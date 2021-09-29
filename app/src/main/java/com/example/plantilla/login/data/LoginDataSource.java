@@ -1,6 +1,8 @@
 package com.example.plantilla.login.data;
 
 import com.example.plantilla.login.data.model.LoggedInUser;
+import com.example.plantilla.modelo.Propietario;
+import com.example.plantilla.request.ApiClient;
 
 import java.io.IOException;
 
@@ -9,15 +11,19 @@ import java.io.IOException;
  */
 public class LoginDataSource {
 
-    public Result<LoggedInUser> login(String username, String password) {
+    public Result<Propietario> login(String username, String password) {
 
         try {
             // TODO: handle loggedInUser authentication
-            LoggedInUser fakeUser =
-                    new LoggedInUser(
-                            java.util.UUID.randomUUID().toString(),
-                            "Jane Doe");
-            return new Result.Success<>(fakeUser);
+            Propietario propietario = new Propietario();
+            ApiClient api = ApiClient.getApi();
+            propietario = api.login(username, password);
+            if(propietario != null){
+                return new Result.Success<>(propietario);
+            }else{
+               return null;
+            }
+
         } catch (Exception e) {
             return new Result.Error(new IOException("Error logging in", e));
         }

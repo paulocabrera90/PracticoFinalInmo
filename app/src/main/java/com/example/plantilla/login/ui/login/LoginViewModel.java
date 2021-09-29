@@ -6,10 +6,12 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
+import com.example.plantilla.R;
 import com.example.plantilla.login.data.LoginRepository;
 import com.example.plantilla.login.data.Result;
 import com.example.plantilla.login.data.model.LoggedInUser;
-import com.example.plantilla.login.R;
+import com.example.plantilla.modelo.Propietario;
+import com.example.plantilla.request.ApiClient;
 
 public class LoginViewModel extends ViewModel {
 
@@ -31,11 +33,11 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
-        Result<LoggedInUser> result = loginRepository.login(username, password);
+        Result<Propietario> result = loginRepository.login(username, password);
 
         if (result instanceof Result.Success) {
-            LoggedInUser data = ((Result.Success<LoggedInUser>) result).getData();
-            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getDisplayName())));
+            Propietario data = ((Result.Success<Propietario>) result).getData();
+            loginResult.setValue(new LoginResult(new LoggedInUserView(data.getNombre())));
         } else {
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
@@ -65,6 +67,6 @@ public class LoginViewModel extends ViewModel {
 
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() > 5;
+        return password != null && password.trim().length() > 2;
     }
 }
