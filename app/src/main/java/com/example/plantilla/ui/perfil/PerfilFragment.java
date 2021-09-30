@@ -18,14 +18,20 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.plantilla.MainActivity;
+import com.example.plantilla.R;
+import com.example.plantilla.databinding.ActivityMainBinding;
 import com.example.plantilla.databinding.FragmentPerfilBinding;
 import com.example.plantilla.modelo.Propietario;
+import com.example.plantilla.request.ApiClient;
+import com.google.android.material.navigation.NavigationView;
 
 public class PerfilFragment extends Fragment {
 
 
     private PerfilViewModel perfilViewModel;
     private FragmentPerfilBinding binding;
+    private MainActivity mainActivity;
     private Button btnEditarPerfil;
     private EditText editTextCodigo,  editTextDni, editTextNombre, editTextApellido, editTextTelefono, editTextEmail, editTextContra ;
     private TextView textViewPerfil, tvImgViewPer, getTextViewPerfil;
@@ -34,13 +40,13 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         perfilViewModel = new ViewModelProvider(this).get(PerfilViewModel.class);
         binding = FragmentPerfilBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
+        View root = binding.getRoot();
         init();
         personalizar();
         editar();
 
-        perfilViewModel.getPropietarioM().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
+        perfilViewModel.getPropietario().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
             @SuppressLint("ResourceType")
             @Override
             public void onChanged(Propietario propietario) {
@@ -52,7 +58,6 @@ public class PerfilFragment extends Fragment {
                 editTextEmail.setText(propietario.getEmail());
                 editTextContra.setText(propietario.getContraseña());
                 ivImagenPerfil.setImageResource(propietario.getAvatar());
-                Log.d("salida", "onChanged: "+ propietario.getAvatar());
                 tvImgViewPer.setText(propietario.getAvatar() + "");
             }
         });
@@ -63,6 +68,8 @@ public class PerfilFragment extends Fragment {
                 btnEditarPerfil.setText(s);
             }
         });
+
+
 
         perfilViewModel.getHabilitado().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
@@ -75,7 +82,29 @@ public class PerfilFragment extends Fragment {
                 editTextDni.setEnabled(aBoolean);
             }
         });
+
+        perfilViewModel.cargarPropietario();
+        loginHeader(root);
         return root;
+    }
+
+    public void loginHeader(View root) {
+        MainActivity mainMenu = (MainActivity)  root.getContext();
+        NavigationView navigationView =(NavigationView) mainMenu.findViewById(R.id.nav_view);
+        final View header = navigationView.getHeaderView(0);
+        ApiClient api = ApiClient.getApi();
+        perfilViewModel.actPerfil(api.obtenerUsuarioActual());
+        perfilViewModel.getPropietario().observe(getViewLifecycleOwner(), new Observer<Propietario>() {
+            @Override
+            public void onChanged(Propietario propietario) {
+                ImageView avatar = header.findViewById(R.id.imageViewPerfil);
+                TextView nombre = header.findViewById(R.id.textViewNombre);
+                TextView correo = header.findViewById(R.id.textViewCorreo);
+                avatar.setImageResource(propietario.getAvatar());
+                nombre.setText(propietario.getNombre()+" "+propietario.getApellido());
+                correo.setText(propietario.getEmail());
+            }
+        });
     }
 
     private void personalizar(){
@@ -92,7 +121,7 @@ public class PerfilFragment extends Fragment {
     }
 
     private void init(){
-        perfilViewModel.cargarPropietario();
+       // perfilViewModel.cargarPropietario();
         editTextCodigo = binding.editTextCodigoPer;
         textViewPerfil = binding.editTextNomPer;
         editTextDni = binding.editTextDniPer;
@@ -120,7 +149,6 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String texto = ((Button)view).getText().toString();
-                Log.d("salida)", "onClick: "+ tvImgViewPer.getText());
                 Propietario p = new Propietario(
                         Integer.parseInt(etCodigo.getText().toString()),
                         Long.parseLong(editTextDni.getText().toString()),

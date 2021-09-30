@@ -1,4 +1,4 @@
-package com.example.plantilla.ui.logout;
+package com.example.plantilla.ui.inquilino;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,24 +14,24 @@ import android.view.ViewGroup;
 
 import com.example.plantilla.R;
 
-public class LogoutFragment extends Fragment {
+public class InquilinoDetalleFragment extends Fragment {
 
-    private LogoutViewModel mViewModel;
+    private InquilinoDetalleViewModel mViewModel;
 
-    public static LogoutFragment newInstance() {
-        return new LogoutFragment();
+    public static InquilinoDetalleFragment newInstance() {
+        return new InquilinoDetalleFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.logout_fragment, container, false);
+        return inflater.inflate(R.layout.inquilino_detalle_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(LogoutViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(InquilinoDetalleViewModel.class);
         // TODO: Use the ViewModel
     }
 

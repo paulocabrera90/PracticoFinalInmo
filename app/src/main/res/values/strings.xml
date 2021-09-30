@@ -25,4 +25,7 @@
     <string name="menu_logout">Logout</string>
     <string name="nombre_y_apellido">Nombre y Apellido</string>
     <string name="correo_electronico">Correo Electronico</string>
+    <string name="inmueble_detalle" />
+    <string name="inmueble_item" />
+    <string name="inquilino_item" />
 </resources>

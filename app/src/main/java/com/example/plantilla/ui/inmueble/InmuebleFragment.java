@@ -11,30 +11,47 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.plantilla.R;
 import com.example.plantilla.databinding.FragmentInmuebleBinding;
+import com.example.plantilla.modelo.Inmueble;
+import com.example.plantilla.request.ApiClient;
+
+import java.util.List;
 
 public class InmuebleFragment extends Fragment {
-
+    private RecyclerView rvInmueble;
     private InmuebleViewModel inmuebleViewModel;
     private FragmentInmuebleBinding binding;
+    private InmuebleAdapter inmuebleAdapter;
+    private List<Inmueble> listaInmueble ;
+    private ApiClient apiClient;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        inmuebleViewModel =
-                new ViewModelProvider(this).get(InmuebleViewModel.class);
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState) {
+        inmuebleViewModel = new ViewModelProvider(this).get(InmuebleViewModel.class);
 
         binding = FragmentInmuebleBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        final View rootView = binding.getRoot();
+        rvInmueble = (RecyclerView) rootView.findViewById(R.id.recyclerViewInmuebles);
 
-        final TextView textView = binding.textSlideshow;
-        inmuebleViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        rvInmueble.addItemDecoration(new DividerItemDecoration(this.getContext() , DividerItemDecoration.VERTICAL));
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+        rvInmueble.setLayoutManager(linearLayoutManager);
+
+        inmuebleViewModel.getListaInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onChanged(List<Inmueble> inmuebles) {
+                inmuebleAdapter = new InmuebleAdapter(inmuebles, rootView.getContext(), inflater);
+                rvInmueble.setAdapter(inmuebleAdapter);
             }
         });
-        return root;
+        inmuebleViewModel.cargarInmuebles();
+        return rootView;
     }
 
     @Override

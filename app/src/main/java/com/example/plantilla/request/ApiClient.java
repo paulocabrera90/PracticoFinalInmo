@@ -28,9 +28,6 @@ public class ApiClient {
 
         }
 
-
-
-
 //Servicios
     //Para que pueda iniciar sesion
 public Propietario login(String mail, final String password){
@@ -114,6 +111,7 @@ public Propietario login(String mail, final String password){
         if(posición!=-1){
             propietarios.set(posición,propietario);
         }
+        usuarioActual = propietario;
     }
 
     //ActualizarInmueble

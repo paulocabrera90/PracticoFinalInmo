@@ -1,11 +1,16 @@
 package com.example.plantilla;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.plantilla.login.ui.login.LoginActivity;
 import com.example.plantilla.modelo.Propietario;
 import com.example.plantilla.request.ApiClient;
 import com.google.android.material.snackbar.Snackbar;
@@ -57,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         mainViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         loginHeader();
+
+
+
     }
 
     public void loginHeader() {
@@ -95,5 +103,23 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finishAffinity();//Cierra la app completa
+    }
+
+    public void logout(MenuItem item) {
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.ic_menu_gallery)
+                .setTitle("¿Realmente desea cerrar sesión?")
+                .setCancelable(false)
+                .setNegativeButton(android.R.string.cancel, null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent login = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(login);
+                        finish();
+
+                    }
+                }).show();
     }
 }

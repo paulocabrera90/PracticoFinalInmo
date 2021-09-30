@@ -8,9 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.example.plantilla.R;
 import com.example.plantilla.databinding.FragmentInicioBinding;
+import com.example.plantilla.modelo.Propietario;
+import com.example.plantilla.ui.perfil.PerfilViewModel;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,14 +29,15 @@ public class InicioFragment extends Fragment {
     private LatLng inmobiliaria = new LatLng(LATITUD_INICIO, LONGITUD_INICIO);
     private GoogleMap mapInicio;
     private FragmentInicioBinding binding;
-
+    private InicioViewModel inicioViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentInicioBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
-    }
 
+
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

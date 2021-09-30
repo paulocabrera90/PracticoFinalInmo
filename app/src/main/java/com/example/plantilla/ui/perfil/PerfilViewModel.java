@@ -11,15 +11,13 @@ import com.example.plantilla.request.ApiClient;
 
 public class PerfilViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
     private MutableLiveData<Boolean> habilitado;
-    private MutableLiveData<Propietario> propietarioM;
+    private MutableLiveData<Propietario> propietario;
     private MutableLiveData<String> textButton;
     private ApiClient api;
     public PerfilViewModel() {
-        propietarioM = new MutableLiveData<>();
+        propietario = new MutableLiveData<>();
         api = ApiClient.getApi();
-        mText = new MutableLiveData<>();
         habilitado = new MutableLiveData<>();
     }
 
@@ -37,15 +35,18 @@ public class PerfilViewModel extends ViewModel {
         return habilitado;
     }
 
-    public LiveData<Propietario> getPropietarioM(){
-        if(propietarioM == null){
-            propietarioM = new MutableLiveData<>();
+    public LiveData<Propietario> getPropietario(){
+        if(propietario == null){
+            propietario = new MutableLiveData<>();
         }
-        return propietarioM;
+        return propietario;
     }
 
     public void cargarPropietario(){
-        propietarioM.setValue(api.obtenerUsuarioActual());
+        propietario.setValue(api.obtenerUsuarioActual());
+    }
+    public void actPerfil(Propietario prop){
+        propietario.setValue(prop);
     }
 
     public void cambiarHabilitado(String t, Propietario p){
@@ -56,6 +57,7 @@ public class PerfilViewModel extends ViewModel {
             habilitado.setValue(false);
             ApiClient api = ApiClient.getApi();
             api.actualizarPerfil(p);
+            this.actPerfil(p);
             textButton.setValue("Editar");
         }
     }
