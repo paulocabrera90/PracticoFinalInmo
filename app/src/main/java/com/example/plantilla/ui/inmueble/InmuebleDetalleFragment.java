@@ -24,7 +24,7 @@ import com.example.plantilla.modelo.Inmueble;
 
 public class InmuebleDetalleFragment extends Fragment {
 
-    private InmuebleDetalleViewModel mViewModel;
+    private InmuebleDetalleViewModel inmuDetViewModel;
     private InmuebleDetalleFragmentBinding binding;
 
     public static InmuebleDetalleFragment newInstance() {
@@ -36,7 +36,7 @@ public class InmuebleDetalleFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         binding = InmuebleDetalleFragmentBinding.inflate(inflater, container, false);
-        mViewModel = new ViewModelProvider(this).get(InmuebleDetalleViewModel.class);
+        inmuDetViewModel = new ViewModelProvider(this).get(InmuebleDetalleViewModel.class);
         View root = binding.getRoot();
 
         final TextView tvCodigo = binding.tvCodigoInmueble;
@@ -47,7 +47,7 @@ public class InmuebleDetalleFragment extends Fragment {
         final TextView tvTipo = binding.tvTipo;
         final CheckBox cbEstado = binding.cbEstadoInmueble;
         final ImageView imageInmueble = binding.ivFotoInmueble;
-        mViewModel.getInmuebleM().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
+        inmuDetViewModel.getInmuebleM().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override
             public void onChanged(Inmueble inmueble) {
                 tvCodigo.setText(inmueble.getIdInmueble() + "");
@@ -64,19 +64,19 @@ public class InmuebleDetalleFragment extends Fragment {
                 cbEstado.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mViewModel.guardarEstado(cbEstado.isChecked());
+                        inmuDetViewModel.guardarEstado(cbEstado.isChecked());
                     }
                 });
             }
         });
-        mViewModel.cargar((Inmueble) getArguments().getSerializable("inmueble"));
+        inmuDetViewModel.cargarInmueble((Inmueble) getArguments().getSerializable("inmueble"));
         return root;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(InmuebleDetalleViewModel.class);
+        inmuDetViewModel = new ViewModelProvider(this).get(InmuebleDetalleViewModel.class);
         // TODO: Use the ViewModel
     }
 

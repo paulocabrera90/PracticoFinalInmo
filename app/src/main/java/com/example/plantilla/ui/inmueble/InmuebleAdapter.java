@@ -90,6 +90,7 @@ public class InmuebleAdapter extends RecyclerView.Adapter<InmuebleAdapter.ViewHo
     public int getItemCount() {
         return listaInmueble.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvDireccion, tvPrecio;
         private ImageView ivInmueble;

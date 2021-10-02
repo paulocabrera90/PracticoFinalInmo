@@ -2,17 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#85B7E8"
-    tools:context=".ui.inquilino.InquilinoDetalleFragment" >
+    tools:context=".ui.contrato.ContratoDetalleFragment">
+
 
     <TextView
-        android:id="@+id/labelInfoInquilino"
+        android:id="@+id/labelInfoContrato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Información del Inquilino"
+        android:text="Información del Contrato"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold|italic"
@@ -22,20 +23,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/labelCodigoInqui"
+        android:id="@+id/labelCodContrato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Código"
+        android:layout_marginTop="30dp"
+        android:text="Código Contrato"
         android:textColor="#4B0469"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelInfoInquilino" />
+        app:layout_constraintTop_toBottomOf="@+id/labelInfoContrato" />
 
     <TextView
-        android:id="@+id/textViewCodigoInqui"
+        android:id="@+id/textViewCodContr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -43,23 +44,23 @@
         android:text="TextView"
         android:textColor="#7B1FA2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelCodigoInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/labelCodContrato" />
 
     <TextView
-        android:id="@+id/labelNombreInqui"
+        android:id="@+id/labelFecIni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Nombre"
+        android:layout_marginTop="30dp"
+        android:text="Fecha Inicio"
         android:textColor="#4B0469"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCodigoInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCodContr" />
 
     <TextView
-        android:id="@+id/textViewNombreInqui"
+        android:id="@+id/textViewIniContr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -67,23 +68,23 @@
         android:text="TextView"
         android:textColor="#7B1FA2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelNombreInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/labelFecIni" />
 
     <TextView
-        android:id="@+id/labelApellidoInqui"
+        android:id="@+id/labelFecFin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Apellido"
+        android:layout_marginTop="30dp"
+        android:text="Fecha Finalización"
         android:textColor="#4B0469"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNombreInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewIniContr" />
 
     <TextView
-        android:id="@+id/textViewApellidoInqui"
+        android:id="@+id/textViewFinContr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -91,23 +92,23 @@
         android:text="TextView"
         android:textColor="#7B1FA2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelApellidoInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/labelFecFin" />
 
     <TextView
-        android:id="@+id/labelDni"
+        android:id="@+id/labelMonAlqui"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="DNI"
+        android:layout_marginTop="30dp"
+        android:text="Monto de Alquiler"
         android:textColor="#4B0469"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewApellidoInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewFinContr" />
 
     <TextView
-        android:id="@+id/textViewDniInqui"
+        android:id="@+id/textViewMontContr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -115,23 +116,23 @@
         android:text="TextView"
         android:textColor="#7B1FA2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelDni" />
+        app:layout_constraintTop_toBottomOf="@+id/labelMonAlqui" />
 
     <TextView
-        android:id="@+id/labelEmailInqui"
+        android:id="@+id/labelInquilino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="E-mail"
+        android:layout_marginTop="30dp"
+        android:text="Inquilino"
         android:textColor="#4B0469"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDniInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewMontContr" />
 
     <TextView
-        android:id="@+id/textViewMailInqui"
+        android:id="@+id/textViewInquiContr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -139,23 +140,23 @@
         android:text="TextView"
         android:textColor="#7B1FA2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelEmailInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/labelInquilino" />
 
     <TextView
-        android:id="@+id/labelTelInqui"
+        android:id="@+id/labelInmueble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Teléfono"
+        android:layout_marginTop="30dp"
+        android:text="Inmueble"
         android:textColor="#4B0469"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelEmailInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewInquiContr" />
 
     <TextView
-        android:id="@+id/textViewTelInqui"
+        android:id="@+id/textViewInmuContr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -163,53 +164,19 @@
         android:text="TextView"
         android:textColor="#7B1FA2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelTelInqui" />
+        app:layout_constraintTop_toBottomOf="@+id/labelInmueble" />
 
-    <TextView
-        android:id="@+id/labelGaranteInqui"
+    <Button
+        android:id="@+id/btnPagos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Garante"
-        android:textColor="#4B0469"
-        android:textSize="14sp"
+        android:layout_marginTop="396dp"
+        android:layout_marginEnd="40dp"
+        android:backgroundTint="#0C9F02"
+        android:text="PAGOS"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTelInqui" />
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelInfoContrato" />
 
-    <TextView
-        android:id="@+id/textViewGaranteInqui"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        android:textColor="#7B1FA2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelGaranteInqui" />
-
-    <TextView
-        android:id="@+id/labelTelGarante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Teléfono Garante"
-        android:textColor="#4B0469"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGaranteInqui" />
-
-    <TextView
-        android:id="@+id/textViewTelGarante"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        android:textColor="#7B1FA2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelTelGarante" />
 </androidx.constraintlayout.widget.ConstraintLayout>

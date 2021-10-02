@@ -19,7 +19,7 @@ public class InmuebleDetalleViewModel extends ViewModel {
         }
         return inmuebleMuta;
     }
-    public void cargar(Inmueble inmueble){
+    public void cargarInmueble(Inmueble inmueble){
         inmuebleMuta.setValue(inmueble);
     }
     public void guardarEstado(Boolean b){

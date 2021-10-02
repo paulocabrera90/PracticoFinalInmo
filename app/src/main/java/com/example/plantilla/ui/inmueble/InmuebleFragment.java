@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,16 +31,12 @@ public class InmuebleFragment extends Fragment {
 
     public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container,@Nullable Bundle savedInstanceState) {
         inmuebleViewModel = new ViewModelProvider(this).get(InmuebleViewModel.class);
-
         binding = FragmentInmuebleBinding.inflate(inflater, container, false);
         final View rootView = binding.getRoot();
         rvInmueble = (RecyclerView) rootView.findViewById(R.id.recyclerViewInmuebles);
-
         rvInmueble.addItemDecoration(new DividerItemDecoration(this.getContext() , DividerItemDecoration.VERTICAL));
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
         rvInmueble.setLayoutManager(linearLayoutManager);
-
         inmuebleViewModel.getListaInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
             public void onChanged(List<Inmueble> inmuebles) {

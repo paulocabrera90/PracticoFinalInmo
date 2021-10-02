@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import com.example.plantilla.R;
 import com.example.plantilla.modelo.Inmueble;
 import com.example.plantilla.modelo.Inquilino;
@@ -36,7 +37,7 @@ public class InquilinoAdapter extends RecyclerView.Adapter<InquilinoAdapter.View
     @NonNull
     @Override
     public InquilinoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.inmueble_item, parent, false);
+        View view = layoutInflater.inflate(R.layout.inquilino_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,36 +46,38 @@ public class InquilinoAdapter extends RecyclerView.Adapter<InquilinoAdapter.View
         Inmueble inmueble = listaInmueble.get(position);
         ApiClient api = ApiClient.getApi();
         final Inquilino inquilino = api.obtenerInquilino(inmueble);
-        holder.textViewInquilinoDirec.setText(listaInmueble.get(position).getDireccion());
-        holder.textViewInquilinoPrecio.setText(String.valueOf(listaInmueble.get(position).getPrecio()));
+        holder.tvInquilinoDirec.setText(listaInmueble.get(position).getDireccion());
+        holder.tvInquilinoPrecio.setText(String.valueOf(listaInmueble.get(position).getPrecio()));
         Glide.with(context)
                 .load(listaInmueble.get(position).getImagen())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.imagenViewInquilinoInmu);
+                .into(holder.ivInquilinoInmu);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("inquilino", inquilino);
-                //Navigation.findNavController(view).navigate(R.id.inquilinoDetalleFragment, bundle);
+                Navigation.findNavController(view).navigate(R.id.nav_inquilino_detalle, bundle);
             }
         });
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView textViewInquilinoDirec, textViewInquilinoPrecio;
-        private ImageView imagenViewInquilinoInmu;
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textViewInquilinoDirec = itemView.findViewById(R.id.textViewInquilinoDirec);
-            textViewInquilinoPrecio = itemView.findViewById(R.id.textViewInquilinoPrecio);
-            imagenViewInquilinoInmu = itemView.findViewById(R.id.imagenViewInquilinoInmu);
-        }
     }
 
     @Override
     public int getItemCount() {
         return listaInmueble.size();
     }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        private TextView tvInquilinoDirec, tvInquilinoPrecio;
+        private ImageView ivInquilinoInmu;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tvInquilinoDirec = itemView.findViewById(R.id.textViewInquilinoDirec);
+            tvInquilinoPrecio = itemView.findViewById(R.id.textViewInquilinoPrecio);
+            ivInquilinoInmu = itemView.findViewById(R.id.imagenViewInquilinoInmu);
+        }
+    }
+
+
 
 }

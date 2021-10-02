@@ -6,6 +6,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -27,10 +34,16 @@ import com.example.plantilla.MainActivity;
 import com.example.plantilla.R;
 import com.example.plantilla.databinding.ActivityLoginBinding;
 
-public class LoginActivity extends AppCompatActivity {
+import java.util.List;
 
+public class LoginActivity extends AppCompatActivity {
+    final static String NUMERO_INMOBILIARIA = "2664745225";
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
+
+    private SensorManager sensorManager;
+    private ReadSensor readSensor;
+    private List<Sensor> listaSensores;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,6 +93,26 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Complete and destroy login activity once successful
 
+                Intent activity = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(activity);
+                finish();
+            }
+        });
+        readSensor = new ReadSensor();
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && checkSelfPermission(android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, 1000);
+        }
+
+        loginViewModel.getEstadoM().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+NUMERO_INMOBILIARIA));
+                startActivity(i);
+                Toast.makeText(LoginActivity.this, "Llamando Inmobiliaria", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -125,15 +158,36 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
-        String welcome = getString(R.string.welcome) + model.getDisplayName();
+        String welcome =model.getDisplayName() +" " +getString(R.string.welcome);
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-        Intent activity = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(activity);
-        finish();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        sensorManager.unregisterListener(readSensor);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(readSensor, listaSensores.get(0), SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    private class ReadSensor implements SensorEventListener {
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            loginViewModel.sensorG(sensorEvent.values[0]);
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+
+        }
     }
 }

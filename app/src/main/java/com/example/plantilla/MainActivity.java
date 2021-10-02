@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finishAffinity();//Cierra la app completa
+     //   finishAffinity();//Cierra la app completa
     }
 
     public void logout(MenuItem item) {

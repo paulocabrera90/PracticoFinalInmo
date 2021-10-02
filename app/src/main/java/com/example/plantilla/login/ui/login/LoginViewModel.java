@@ -18,6 +18,8 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
     private LoginRepository loginRepository;
+    private MutableLiveData<Boolean> estadoM;
+    private int activador = 0;
 
     LoginViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
@@ -41,6 +43,13 @@ public class LoginViewModel extends ViewModel {
         } else {
             loginResult.setValue(new LoginResult(R.string.login_failed));
         }
+    }
+
+    public LiveData<Boolean> getEstadoM() {
+        if(estadoM == null){
+            estadoM = new MutableLiveData<>();
+        }
+        return estadoM;
     }
 
     public void loginDataChanged(String username, String password) {
@@ -68,5 +77,15 @@ public class LoginViewModel extends ViewModel {
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 2;
+    }
+
+    public void sensorG(float x){
+        if(x > 1 || x < -1){
+            activador++;
+        }
+        if(activador > 20){
+            activador = 0;
+            estadoM.setValue(true);
+        }
     }
 }
