@@ -9,9 +9,7 @@ import android.util.Patterns;
 import com.example.plantilla.R;
 import com.example.plantilla.login.data.LoginRepository;
 import com.example.plantilla.login.data.Result;
-import com.example.plantilla.login.data.model.LoggedInUser;
 import com.example.plantilla.modelo.Propietario;
-import com.example.plantilla.request.ApiClient;
 
 public class LoginViewModel extends ViewModel {
 
@@ -19,6 +17,7 @@ public class LoginViewModel extends ViewModel {
     private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
     private LoginRepository loginRepository;
     private MutableLiveData<Boolean> estadoM;
+    private MutableLiveData<Double> log;
     private int activador = 0;
 
     LoginViewModel(LoginRepository loginRepository) {
@@ -52,6 +51,13 @@ public class LoginViewModel extends ViewModel {
         return estadoM;
     }
 
+    public LiveData<Double> getLog() {
+        if(log == null){
+            log = new MutableLiveData<>();
+        }
+        return log;
+    }
+
     public void loginDataChanged(String username, String password) {
         if (!isUserNameValid(username)) {
             loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
@@ -59,6 +65,18 @@ public class LoginViewModel extends ViewModel {
             loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
         } else {
             loginFormState.setValue(new LoginFormState(true));
+        }
+    }
+
+    public void sensorG(float movi){
+        if(movi > 1 || movi < -1){
+            activador++;
+        }
+        if(activador > 30){
+            //log.setValue(Double.valueOf(movi));
+            activador = 0;
+            estadoM.setValue(true);
+
         }
     }
 
@@ -77,15 +95,5 @@ public class LoginViewModel extends ViewModel {
     // A placeholder password validation check
     private boolean isPasswordValid(String password) {
         return password != null && password.trim().length() > 2;
-    }
-
-    public void sensorG(float x){
-        if(x > 1 || x < -1){
-            activador++;
-        }
-        if(activador > 20){
-            activador = 0;
-            estadoM.setValue(true);
-        }
     }
 }

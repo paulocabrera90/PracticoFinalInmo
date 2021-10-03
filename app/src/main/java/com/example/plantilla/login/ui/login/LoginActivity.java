@@ -38,6 +38,7 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     final static String NUMERO_INMOBILIARIA = "2664745225";
+    final static String NOMBRE_INMOBILIARIA = "2664745225";
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
 
@@ -100,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         readSensor = new ReadSensor();
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        listaSensores = sensorManager.getSensorList(Sensor.TYPE_GYROSCOPE);
+        listaSensores = sensorManager.getSensorList(Sensor.TYPE_LINEAR_ACCELERATION);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                 && checkSelfPermission(android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
@@ -112,7 +113,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(Boolean aBoolean) {
                 Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+NUMERO_INMOBILIARIA));
                 startActivity(i);
-                Toast.makeText(LoginActivity.this, "Llamando Inmobiliaria", Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Llamando Inmobiliaria "+NOMBRE_INMOBILIARIA, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        loginViewModel.getLog().observe(this, new Observer<Double>() {
+            @Override
+            public void onChanged(Double doub) {
+
+                Toast.makeText(LoginActivity.this, "LOG: "+ doub, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -177,6 +186,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(readSensor, listaSensores.get(0), SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sensorManager.unregisterListener(readSensor);
     }
 
     private class ReadSensor implements SensorEventListener {

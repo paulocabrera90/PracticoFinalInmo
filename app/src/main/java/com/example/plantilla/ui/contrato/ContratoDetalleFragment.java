@@ -57,7 +57,7 @@ public class ContratoDetalleFragment extends Fragment {
                     public void onClick(View view) {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("pagos", contrato);
-                        //Navigation.findNavController(view).navigate(R.id.pagoFragment, bundle);
+                        Navigation.findNavController(view).navigate(R.id.nav_pago_item, bundle);
                     }
                 });
             }

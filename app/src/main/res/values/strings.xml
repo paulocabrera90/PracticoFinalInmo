@@ -30,4 +30,5 @@
     <string name="inquilino_item" />
     <string name="contrato_item" />
     <string name="contrato_detalle_item" />
+    <string name="pago_item">Pago</string>
 </resources>
