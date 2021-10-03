@@ -153,8 +153,8 @@ public Propietario login(String mail, final String password){
         Contrato tres=new Contrato(701, "05/01/2020","05/01/2021",17000,mario,otraCasa);
 
         contratos.add(uno);
-        contratos.add(dos);
-        contratos.add(tres);
+   //     contratos.add(dos);
+     //   contratos.add(tres);
 
         //Pagos
         pagos.add(new Pago(900,1,uno,17000,"10/02/2020"));

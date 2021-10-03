@@ -15,12 +15,12 @@ import com.example.plantilla.modelo.Pago;
 import java.util.List;
 
 public class PagoAdapter extends RecyclerView.Adapter<PagoAdapter.ViewHolder>{
-    private List<Pago> lista;
+    private List<Pago> listaPagos;
     private Context context;
     private LayoutInflater layoutInflater;
 
     public PagoAdapter(List<Pago> lista, Context context, LayoutInflater layoutInflater) {
-        this.lista = lista;
+        this.listaPagos = lista;
         this.context = context;
         this.layoutInflater = layoutInflater;
     }
@@ -34,25 +34,25 @@ public class PagoAdapter extends RecyclerView.Adapter<PagoAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull PagoAdapter.ViewHolder holder, int position) {
-        holder.tvCodigoP.setText(String.valueOf(lista.get(position).getIdPago()));
-        holder.tvNroPago.setText(String.valueOf(lista.get(position).getNumero()));
-        holder.tvCodigoCP.setText(String.valueOf(lista.get(position).getContrato().getIdContrato()));
-        holder.tvImportP.setText(String.valueOf(lista.get(position).getImporte()));
-        holder.tvfechaP.setText(lista.get(position).getFechaDePago());
+        holder.tvCodigoP.setText(String.valueOf(listaPagos.get(position).getIdPago()));
+        holder.tvNroPago.setText(String.valueOf(listaPagos.get(position).getNumero()));
+        holder.tvCodigoCP.setText(String.valueOf(listaPagos.get(position).getContrato().getIdContrato()));
+        holder.tvImportP.setText(String.valueOf(listaPagos.get(position).getImporte()));
+        holder.tvfechaP.setText(listaPagos.get(position).getFechaDePago());
     }
     public int getItemCount() {
-        return lista.size();
+        return listaPagos.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvCodigoP, tvNroPago, tvCodigoCP, tvImportP, tvfechaP;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvCodigoP = itemView.findViewById(R.id.tvCodigoPago);
-            tvNroPago = itemView.findViewById(R.id.tvNroPago);
-            tvCodigoCP = itemView.findViewById(R.id.tvCodigoCPago);
-            tvImportP = itemView.findViewById(R.id.tvImportePago);
-            tvfechaP = itemView.findViewById(R.id.tvFechaPago);
+            tvCodigoP = itemView.findViewById(R.id.textViewCodigoPago);
+            tvNroPago = itemView.findViewById(R.id.textViewNroPago);
+            tvCodigoCP = itemView.findViewById(R.id.textViewCodigoCPago);
+            tvImportP = itemView.findViewById(R.id.textViewImportePago);
+            tvfechaP = itemView.findViewById(R.id.textViewFechaPago);
         }
     }
 }

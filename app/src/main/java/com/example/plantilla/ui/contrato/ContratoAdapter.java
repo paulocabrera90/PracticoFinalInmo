@@ -45,7 +45,7 @@ public class ContratoAdapter extends RecyclerView.Adapter<ContratoAdapter.ViewHo
         Inmueble inmueble = listaInmueble.get(position);
         final ApiClient api = ApiClient.getApi();
         final Contrato contrato = api.obtenerContratoVigente(inmueble);
-        holder.tvPrecioC.setText(String.valueOf(listaInmueble.get(position).getPrecio()));
+        holder.tvPrecioC.setText("$ " + String.valueOf(listaInmueble.get(position).getPrecio()));
         holder.tvDireccionC.setText(listaInmueble.get(position).getDireccion());
         Glide.with(context)
                 .load(listaInmueble.get(position).getImagen())

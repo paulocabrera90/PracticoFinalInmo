@@ -37,8 +37,8 @@ import com.example.plantilla.databinding.ActivityLoginBinding;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
-    final static String NUMERO_INMOBILIARIA = "2664745225";
-    final static String NOMBRE_INMOBILIARIA = "Mittchel";
+    final static String NUMERO_INMOBILIARIA = "2664439361";
+    final static String NOMBRE_INMOBILIARIA = "Jorge Mitchell E Hijos";
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
 

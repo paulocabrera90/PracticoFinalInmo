@@ -23,10 +23,8 @@ public class PagoViewModel extends ViewModel {
         return pagosM;
     }
 
-    public void cargarPagos(Bundle bundle){
-  //  public void cargarPagos(Pago pago){
+   public void cargarPagos(Contrato contratoPago){
         ApiClient api = ApiClient.getApi();
-        Contrato contrato = (Contrato) bundle.getSerializable("pagos");
-        pagosM.setValue(api.obtenerPagos(contrato));
+        pagosM.setValue(api.obtenerPagos(contratoPago));
     }
 }

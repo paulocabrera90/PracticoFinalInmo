@@ -49,14 +49,14 @@ public class ContratoDetalleFragment extends Fragment {
                 tvCodigoContrato.setText(contrato.getIdContrato() + "");
                 tvInicioContrato.setText(contrato.getFechaInicio());
                 tvFinCOntrato.setText(contrato.getFechaFin());
-                tvMontoContrato.setText("$ " + contrato.getMontoAlquiler());
+                tvMontoContrato.setText("$"+String.valueOf(contrato.getMontoAlquiler()));
                 tvInquilinoContrato.setText(contrato.getInquilino().getNombreGarante()+" "+ contrato.getInquilino().getApellido());
-                tvInmuebleContrato.setText("Inmueble en" + contrato.getInmueble().getDireccion());
+                tvInmuebleContrato.setText("Inmueble en " + contrato.getInmueble().getDireccion());
                 btPagos.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("pagos", contrato);
+                        bundle.putSerializable("contratoPagos", contrato);
                         Navigation.findNavController(view).navigate(R.id.nav_pago_item, bundle);
                     }
                 });

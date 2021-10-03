@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="#388E3C"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#268BF4"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
-    app:contentPadding="10dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    app:contentPadding="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/labelCodigoPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/labelNumPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -37,10 +37,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView29" />
+            app:layout_constraintTop_toBottomOf="@+id/labelCodigoPago" />
 
         <TextView
-            android:id="@+id/textView34"
+            android:id="@+id/labelCodContrato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -50,10 +50,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView32" />
+            app:layout_constraintTop_toBottomOf="@+id/labelNumPago" />
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/labelImporte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -63,10 +63,10 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView34" />
+            app:layout_constraintTop_toBottomOf="@+id/labelCodContrato" />
 
         <TextView
-            android:id="@+id/textView37"
+            android:id="@+id/labelFechaPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -76,62 +76,62 @@
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView36" />
+            app:layout_constraintTop_toBottomOf="@+id/labelImporte" />
 
         <TextView
-            android:id="@+id/tvCodigoPago"
+            android:id="@+id/textViewCodigoPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:text="TextView"
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/textView29"
+            app:layout_constraintStart_toEndOf="@+id/labelCodigoPago"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvNroPago"
+            android:id="@+id/textViewNroPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:text="TextView"
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/textView32"
-            app:layout_constraintTop_toBottomOf="@+id/tvCodigoPago" />
+            app:layout_constraintStart_toEndOf="@+id/labelNumPago"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCodigoPago" />
 
         <TextView
-            android:id="@+id/tvCodigoCPago"
+            android:id="@+id/textViewCodigoCPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
             android:text="TextView"
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/textView34"
-            app:layout_constraintTop_toBottomOf="@+id/tvNroPago" />
+            app:layout_constraintStart_toEndOf="@+id/labelCodContrato"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNroPago" />
 
         <TextView
-            android:id="@+id/tvImportePago"
+            android:id="@+id/textViewImportePago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:text="TextView"
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/textView36"
-            app:layout_constraintTop_toBottomOf="@+id/tvCodigoCPago" />
+            app:layout_constraintStart_toEndOf="@+id/labelImporte"
+            app:layout_constraintTop_toBottomOf="@+id/textViewCodigoCPago" />
 
         <TextView
-            android:id="@+id/tvFechaPago"
+            android:id="@+id/textViewFechaPago"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:text="TextView"
             android:textColor="#FFFFFF"
-            app:layout_constraintStart_toEndOf="@+id/textView37"
-            app:layout_constraintTop_toBottomOf="@+id/tvImportePago" />
+            app:layout_constraintStart_toEndOf="@+id/labelFechaPago"
+            app:layout_constraintTop_toBottomOf="@+id/textViewImportePago" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

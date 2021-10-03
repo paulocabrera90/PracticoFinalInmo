@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.example.plantilla.R;
 import com.example.plantilla.databinding.PagoFragmentBinding;
+import com.example.plantilla.modelo.Contrato;
 import com.example.plantilla.modelo.Pago;
 
 import java.util.List;
@@ -48,8 +49,7 @@ public class PagoFragment extends Fragment {
                 recyclerViewPago.setAdapter(pagoAdapter);
             }
         });
-       // pagoViewModel.cargarPagos((Pago) getArguments().getSerializable("pagos"));
-        pagoViewModel.cargarPagos(getArguments());
+        pagoViewModel.cargarPagos((Contrato) getArguments().getSerializable("contratoPagos"));
         return root;
     }
 
