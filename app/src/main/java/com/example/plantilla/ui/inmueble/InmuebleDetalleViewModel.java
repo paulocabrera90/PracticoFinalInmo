@@ -24,7 +24,7 @@ public class InmuebleDetalleViewModel extends ViewModel {
     }
     public void guardarEstado(Boolean b){
         ApiClient api = ApiClient.getApi();
-        inmueble.setEstado(b);
+        inmuebleMuta.getValue().setEstado(b);
         api.actualizarInmueble(inmueble);
     }
 }

@@ -38,7 +38,7 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     final static String NUMERO_INMOBILIARIA = "2664745225";
-    final static String NOMBRE_INMOBILIARIA = "2664745225";
+    final static String NOMBRE_INMOBILIARIA = "Mittchel";
     private LoginViewModel loginViewModel;
     private ActivityLoginBinding binding;
 
@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(Boolean aBoolean) {
                 Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+NUMERO_INMOBILIARIA));
                 startActivity(i);
-                Toast.makeText(LoginActivity.this, "Llamando Inmobiliaria "+NOMBRE_INMOBILIARIA, Toast.LENGTH_LONG).show();
+                Toast.makeText(LoginActivity.this, "Llamando Inmobiliaria "+ NOMBRE_INMOBILIARIA, Toast.LENGTH_LONG).show();
             }
         });
 

@@ -49,7 +49,7 @@ public class InmuebleDetalleFragment extends Fragment {
         final ImageView imageInmueble = binding.ivFotoInmueble;
         inmuDetViewModel.getInmuebleM().observe(getViewLifecycleOwner(), new Observer<Inmueble>() {
             @Override
-            public void onChanged(Inmueble inmueble) {
+            public void onChanged(final Inmueble inmueble) {
                 tvCodigo.setText(inmueble.getIdInmueble() + "");
                 tvAmbiente.setText(inmueble.getAmbientes() + "");
                 tvDireccion.setText(inmueble.getDireccion());
