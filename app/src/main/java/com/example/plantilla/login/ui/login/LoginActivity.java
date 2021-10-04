@@ -94,9 +94,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 //Complete and destroy login activity once successful
 
-                Intent activity = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(activity);
-                finish();
+
             }
         });
         readSensor = new ReadSensor();
@@ -170,6 +168,9 @@ public class LoginActivity extends AppCompatActivity {
         String welcome =model.getDisplayName() +" " +getString(R.string.welcome);
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        Intent activity = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(activity);
+        finish();
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {

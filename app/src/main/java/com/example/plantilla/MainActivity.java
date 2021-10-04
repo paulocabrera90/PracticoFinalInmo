@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void logout(MenuItem item) {
         new AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_menu_gallery)
+                .setIcon(android.R.drawable.ic_lock_idle_lock)
                 .setTitle("¿Realmente desea cerrar sesión?")
                 .setCancelable(false)
                 .setNegativeButton(android.R.string.cancel, null)

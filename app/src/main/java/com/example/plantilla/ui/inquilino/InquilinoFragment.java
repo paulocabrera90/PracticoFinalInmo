@@ -28,7 +28,7 @@ import java.util.List;
 public class InquilinoFragment extends Fragment {
 
     private InquilinoViewModel inquiViewModel;
-    private RecyclerView rvInquilino;
+    private RecyclerView recyclerViewInquilino;
     private InquilinoAdapter inquilinoAdapter;
     private InquilinoFragmentBinding binding;
 
@@ -41,17 +41,17 @@ public class InquilinoFragment extends Fragment {
         inquiViewModel = new ViewModelProvider(this).get(InquilinoViewModel.class);
         binding = InquilinoFragmentBinding.inflate(inflater, container, false);
         final View root = binding.getRoot();
-        rvInquilino = (RecyclerView) root.findViewById(R.id.recyclerViewInquilinos);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
-        rvInquilino.setLayoutManager(gridLayoutManager);
-       //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
-        rvInquilino.addItemDecoration(new DividerItemDecoration(this.getContext() , DividerItemDecoration.VERTICAL));
-        //rvInquilino.setLayoutManager(linearLayoutManager);
+        recyclerViewInquilino = (RecyclerView) root.findViewById(R.id.recyclerViewInquilinos);
+        //GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
+        //rvInquilino.setLayoutManager(gridLayoutManager);
+       LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
+        recyclerViewInquilino.addItemDecoration(new DividerItemDecoration(this.getContext() , DividerItemDecoration.VERTICAL));
+        recyclerViewInquilino.setLayoutManager(linearLayoutManager);
         inquiViewModel.getListaInmueble().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
             public void onChanged(List<Inmueble> inmuebles) {
                 inquilinoAdapter = new InquilinoAdapter(inmuebles, root.getContext(), inflater);
-                rvInquilino.setAdapter(inquilinoAdapter);
+                recyclerViewInquilino.setAdapter(inquilinoAdapter);
             }
         });
         inquiViewModel.propiedadesAlquiladas();

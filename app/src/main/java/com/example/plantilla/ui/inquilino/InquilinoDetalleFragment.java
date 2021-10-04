@@ -21,8 +21,6 @@ import com.example.plantilla.modelo.Inquilino;
 
 public class InquilinoDetalleFragment extends Fragment {
 
-    private InquilinoDetalleViewModel mViewModel;
-
     private InquilinoDetalleViewModel inquilinoDetalleViewModel;
     private InquilinoDetalleFragmentBinding binding;
 
@@ -64,7 +62,7 @@ public class InquilinoDetalleFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(InquilinoDetalleViewModel.class);
+        inquilinoDetalleViewModel = new ViewModelProvider(this).get(InquilinoDetalleViewModel.class);
         // TODO: Use the ViewModel
     }
     @Override

@@ -25,9 +25,7 @@ import java.util.List;
 
 public class ContratoFragment extends Fragment {
 
-    private ContratoViewModel mViewModel;
-
-    private RecyclerView rvContrato;
+    private RecyclerView recyclerViewContrato;
     private ContratoAdapter contratoAdapter;
     private ContratoViewModel contratoViewModel;
     private ContratoFragmentBinding binding;
@@ -43,19 +41,19 @@ public class ContratoFragment extends Fragment {
         contratoViewModel = new ViewModelProvider(this).get(ContratoViewModel.class);
         binding = ContratoFragmentBinding.inflate(inflater, container, false);
         final View root = binding.getRoot();
-        rvContrato = root.findViewById(R.id.recyclerViewContratos);
+        recyclerViewContrato = root.findViewById(R.id.recyclerViewContratos);
         //GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
         //rvContrato.setLayoutManager(gridLayoutManager);
 
-        rvContrato.addItemDecoration(new DividerItemDecoration(this.getContext() , DividerItemDecoration.VERTICAL));
+        recyclerViewContrato.addItemDecoration(new DividerItemDecoration(this.getContext() , DividerItemDecoration.VERTICAL));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
-        rvContrato.setLayoutManager(linearLayoutManager);
+        recyclerViewContrato.setLayoutManager(linearLayoutManager);
 
         contratoViewModel.getListaInmueble().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
             public void onChanged(List<Inmueble> inmuebles) {
                 contratoAdapter = new ContratoAdapter(inmuebles, root.getContext(), inflater);
-                rvContrato.setAdapter(contratoAdapter);
+                recyclerViewContrato.setAdapter(contratoAdapter);
             }
         });
         contratoViewModel.cargarInmueblesAlquilados();
@@ -67,7 +65,7 @@ public class ContratoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ContratoViewModel.class);
+        contratoViewModel = new ViewModelProvider(this).get(ContratoViewModel.class);
         // TODO: Use the ViewModel
     }
 

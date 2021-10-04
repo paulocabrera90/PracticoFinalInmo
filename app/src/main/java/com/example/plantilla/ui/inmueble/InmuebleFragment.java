@@ -22,7 +22,7 @@ import com.example.plantilla.request.ApiClient;
 import java.util.List;
 
 public class InmuebleFragment extends Fragment {
-    private RecyclerView rvInmueble;
+    private RecyclerView recyclerViewInmueble;
     private InmuebleViewModel inmuebleViewModel;
     private FragmentInmuebleBinding binding;
     private InmuebleAdapter inmuebleAdapter;
@@ -33,15 +33,15 @@ public class InmuebleFragment extends Fragment {
         inmuebleViewModel = new ViewModelProvider(this).get(InmuebleViewModel.class);
         binding = FragmentInmuebleBinding.inflate(inflater, container, false);
         final View rootView = binding.getRoot();
-        rvInmueble = (RecyclerView) rootView.findViewById(R.id.recyclerViewInmuebles);
-        rvInmueble.addItemDecoration(new DividerItemDecoration(this.getContext() , DividerItemDecoration.VERTICAL));
+        recyclerViewInmueble = (RecyclerView) rootView.findViewById(R.id.recyclerViewInmuebles);
+        recyclerViewInmueble.addItemDecoration(new DividerItemDecoration(this.getContext() , DividerItemDecoration.VERTICAL));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext());
-        rvInmueble.setLayoutManager(linearLayoutManager);
+        recyclerViewInmueble.setLayoutManager(linearLayoutManager);
         inmuebleViewModel.getListaInmuebles().observe(getViewLifecycleOwner(), new Observer<List<Inmueble>>() {
             @Override
             public void onChanged(List<Inmueble> inmuebles) {
                 inmuebleAdapter = new InmuebleAdapter(inmuebles, rootView.getContext(), inflater);
-                rvInmueble.setAdapter(inmuebleAdapter);
+                recyclerViewInmueble.setAdapter(inmuebleAdapter);
             }
         });
         inmuebleViewModel.cargarInmuebles();
